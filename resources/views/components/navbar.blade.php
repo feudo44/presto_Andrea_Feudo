@@ -10,6 +10,27 @@
                     <a class="nav-link" href="{{ route('homepage') }}">Home</a>
                 </li>
             </ul>
+
+            <ul class="navbar-nav ms-auto align-items-lg-center">
+                @auth
+                    <li class="nav-item">
+                        <span class="nav-link">Ciao, {{ Auth::user()->name }}</span>
+                    </li>
+                    <li class="nav-item">
+                        <form method="POST" action="/logout" class="d-inline">
+                            @csrf
+                            <button type="submit" class="btn btn-outline-danger">Logout</button>
+                        </form>
+                    </li>
+                @else
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Accedi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/register">Registrati</a>
+                    </li>
+                @endauth
+            </ul>
         </div>
     </div>
 </nav>
