@@ -1,6 +1,11 @@
 <x-layout>
     <div class="container-fluid text-center">
         <div class="row justify-content-center align-items-center py-5">
+            @if (session()->has('errorMessage'))
+                <div class="alert alert-danger text-center shadow rounded w-50 mx-auto mt-3">
+                    {{ session('errorMessage') }}
+                </div>
+            @endif
             <div class="col-12">
                 <h1 class="display-1">Presto.it</h1>
                 <div class="my-3">
