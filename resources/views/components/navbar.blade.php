@@ -9,15 +9,15 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('homepage') }}">Home</a>
                 </li>
-                <li class="nav-item">
-    <a class="nav-link" href="{{ route('article.create') }}">Inserisci annuncio</a>
-</li>
             </ul>
 
             <ul class="navbar-nav ms-auto align-items-lg-center">
                 @auth
                     <li class="nav-item">
-                        <span class="nav-link">Ciao, {{ Auth::user()->name }}</span>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('create.article') }}">Pubblica un articolo</a>
+                    </li>
+                    <span class="nav-link">Ciao, {{ Auth::user()->name }}</span>
                     </li>
                     <li class="nav-item">
                         <form method="POST" action="/logout" class="d-inline">
