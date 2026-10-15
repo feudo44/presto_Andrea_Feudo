@@ -9,6 +9,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('homepage') }}">Home</a>
                 </li>
+                <li class="nav-item">
+    <a class="nav-link" href="{{ route('article.create') }}">Inserisci annuncio</a>
+</li>
             </ul>
 
             <ul class="navbar-nav ms-auto align-items-lg-center">
