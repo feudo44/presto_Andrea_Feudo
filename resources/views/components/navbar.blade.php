@@ -45,6 +45,11 @@
                                 </a>
                             </li>
                         @endif
+                    <form class="d-flex mx-lg-3" role="search" action="{{ route('article.search') }}" method="GET">
+                        <input class="form-control me-2" type="search" name="searched" placeholder="Cerca un articolo"
+                            aria-label="Cerca">
+                        <button class="btn btn-outline-success" type="submit">Cerca</button>
+                    </form>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('create.article') }}">Pubblica un articolo</a>
                     </li>
