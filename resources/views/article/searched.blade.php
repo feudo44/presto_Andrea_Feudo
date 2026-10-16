@@ -1,6 +1,6 @@
 <x-layout>
     <div class="container my-5">
-        <h1 class="display-5 mb-4">Risultati per "{{ $query }}"</h1>
+        <h1 class="display-5 mb-4">{{ __('ui.results_for') }} "{{ $query }}"</h1>
 
         <div class="row">
             @forelse ($articles as $article)
@@ -9,7 +9,7 @@
                 </div>
             @empty
                 <div class="col-12">
-                    <p class="lead">Nessun articolo trovato.</p>
+                    <p class="lead">{{ __('ui.no_results') }}</p>
                 </div>
             @endforelse
         </div>

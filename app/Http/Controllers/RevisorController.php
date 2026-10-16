@@ -20,29 +20,29 @@ class RevisorController extends Controller
     public function accept(Article $article)
     {
         $article->setAccepted(true);
-        return redirect()->back()->with('message', "Hai accettato l'articolo $article->title");
+        return redirect()->back()->with('message', __('ui.article_accepted', ['title' => $article->title]));
     }
 
     public function reject(Article $article)
-    {
-        $article->setAccepted(false);
-        return redirect()->back()->with('message', "Hai rifiutato l'articolo $article->title");
-    }
+{
+    $article->setAccepted(false);
+    return redirect()->back()->with('errorMessage', __('ui.article_rejected', ['title' => $article->title]));
+}
 
     public function becomeRevisor()
     {
         try {
             Mail::to('admin@presto.it')->send(new BecomeRevisor(Auth::user()));
         } catch (\Exception $e) {
-            return redirect()->route('homepage')->with('errorMessage', 'Non siamo riusciti a inviare la richiesta. Riprova più tardi.');
+            return redirect()->route('homepage')->with('errorMessage', __('ui.request_error'));
         }
 
-        return redirect()->route('homepage')->with('message', 'Richiesta inviata! Il nostro team la esaminerà e ti contatterà via email.');
+        return redirect()->route('homepage')->with('message', __('ui.request_sent'));
     }
 
     public function makeRevisor(User $user)
     {
         Artisan::call('app:make-user-revisor', ['email' => $user->email]);
-        return redirect()->route('homepage')->with('message', 'L\'utente ' . $user->name . ' è stato reso revisore.');
+        return redirect()->route('homepage')->with('message', __('ui.user_is_revisor', ['name' => $user->name]));
     }
 }

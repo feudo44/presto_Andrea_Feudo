@@ -5,31 +5,42 @@ namespace App\Livewire;
 use App\Models\Article;
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
-use Livewire\Attributes\Validate;
 use Livewire\Component;
 
 class CreateArticleForm extends Component
 {
-    #[Validate('required|min:5', message: [
-        'required' => 'Il titolo è obbligatorio',
-        'min' => 'Il titolo deve avere almeno 5 caratteri',
-    ])]
     public $title;
-
-    #[Validate('required|min:10', message: [
-        'required' => 'La descrizione è obbligatoria',
-        'min' => 'La descrizione deve avere almeno 10 caratteri',
-    ])]
     public $description;
-
-    #[Validate('required|numeric', message: [
-        'required' => 'Il prezzo è obbligatorio',
-        'numeric' => 'Il prezzo deve essere un numero',
-    ])]
     public $price;
-
-    #[Validate('required', message: ['required' => 'Seleziona una categoria'])]
     public $category;
+
+    protected function rules()
+    {
+        return [
+            'title' => 'required|min:5',
+            'description' => 'required|min:10',
+            'price' => 'required|numeric',
+            'category' => 'required',
+        ];
+    }
+
+    protected function messages()
+    {
+        return [
+            'title.required' => __('ui.title_required'),
+            'title.min' => __('ui.title_min'),
+            'description.required' => __('ui.description_required'),
+            'description.min' => __('ui.description_min'),
+            'price.required' => __('ui.price_required'),
+            'price.numeric' => __('ui.price_numeric'),
+            'category.required' => __('ui.category_required'),
+        ];
+    }
+
+    public function updated($property)
+    {
+        $this->validateOnly($property);
+    }
 
     public function store()
     {
@@ -43,7 +54,7 @@ class CreateArticleForm extends Component
             'user_id' => Auth::id(),
         ]);
 
-        session()->flash('success', 'Articolo creato correttamente');
+        session()->flash('success', __('ui.article_created'));
         $this->cleanForm();
     }
 
