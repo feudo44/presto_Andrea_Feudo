@@ -54,4 +54,9 @@ return [
     'request_error' => 'Non siamo riusciti a inviare la richiesta. Riprova più tardi.',
     'request_sent' => 'Richiesta inviata! Il nostro team la esaminerà e ti contatterà via email.',
     'user_is_revisor' => 'L\'utente :name è stato reso revisore.',
+    'images_label' => 'Immagini',
+    'remove' => 'Rimuovi',
+    'image_invalid' => 'Il file deve essere un\'immagine',
+    'image_max' => 'Ogni immagine può pesare al massimo 1 MB',
+    'no_images' => 'Nessuna immagine caricata',
 ];

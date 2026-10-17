@@ -40,6 +40,29 @@
             <p class="text-danger small">{{ $message }}</p> @enderror
         </div>
 
+        <div class="mb-3">
+            <label for="images" class="form-label">{{ __('ui.images_label') }}</label>
+            <input type="file" id="images" wire:model="temporary_images" multiple accept="image/*"
+                class="form-control @error('temporary_images.*') is-invalid @enderror">
+            <div wire:loading wire:target="temporary_images" class="small text-muted mt-1">...</div>
+            @error('temporary_images.*')
+            <p class="text-danger small">{{ $message }}</p> @enderror
+            @error('images.*')
+            <p class="text-danger small">{{ $message }}</p> @enderror
+        </div>
+
+        @if (!empty($images))
+            <div class="row mb-3">
+                @foreach ($images as $key => $image)
+                    <div class="col-6 col-md-4 text-center mb-3">
+                        <img src="{{ $image->temporaryUrl() }}" class="img-fluid rounded shadow" alt="Anteprima">
+                        <button type="button" class="btn btn-sm btn-danger mt-2"
+                            wire:click="removeImage({{ $key }})">{{ __('ui.remove') }}</button>
+                    </div>
+                @endforeach
+            </div>
+        @endif
+
         <button type="submit" class="btn btn-primary">{{ __('ui.create_ad') }}</button>
     </form>
 </div>

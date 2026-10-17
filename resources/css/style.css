@@ -5,3 +5,8 @@
 .height-custom {
     min-height: 50vh;
 }
+
+.card-img-fixed {
+    height: 18rem;
+    object-fit: cover;
+}

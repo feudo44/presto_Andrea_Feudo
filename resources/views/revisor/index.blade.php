@@ -12,12 +12,16 @@
             <div class="row justify-content-center pt-5">
                 <div class="col-md-8">
                     <div class="row justify-content-center">
-                        @for ($i = 0; $i < 6; $i++)
+                        @forelse ($article_to_check->images as $image)
                             <div class="col-6 col-md-4 mb-4 text-center">
-                                <img src="https://picsum.photos/300" class="img-fluid rounded shadow"
-                                    alt="{{ __('ui.placeholder_image') }}">
+                                <img src="{{ asset('storage/' . $image->path) }}" class="img-fluid rounded shadow"
+                                    alt="{{ $article_to_check->title }}">
                             </div>
-                        @endfor
+                        @empty
+                            <div class="col-12 text-center">
+                                <p class="fst-italic text-muted">{{ __('ui.no_images') }}</p>
+                            </div>
+                        @endforelse
                     </div>
                 </div>
                 <div class="col-md-4 ps-4 d-flex flex-column justify-content-between">
