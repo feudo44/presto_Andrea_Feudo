@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Jobs\ResizeImage;
 use App\Models\Article;
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
@@ -59,12 +60,23 @@ class CreateArticleForm extends Component
 
     public function updatedTemporaryImages()
     {
+        if (!$this->temporary_images) {
+            return;
+        }
+
         $this->validate([
             'temporary_images.*' => 'image|max:1024',
         ]);
 
         foreach ($this->temporary_images as $image) {
-            $this->images[] = $image;
+            $alreadyAdded = collect($this->images)->contains(function ($existing) use ($image) {
+                return $existing->getClientOriginalName() === $image->getClientOriginalName()
+                    && $existing->getSize() === $image->getSize();
+            });
+
+            if (!$alreadyAdded) {
+                $this->images[] = $image;
+            }
         }
 
         $this->temporary_images = null;
@@ -91,9 +103,13 @@ class CreateArticleForm extends Component
         ]);
 
         foreach ($this->images as $image) {
-            $article->images()->create([
-                'path' => $image->store('articles/' . $article->id, 'public'),
-            ]);
+            $path = $image->store('articles/' . $article->id, 'public');
+
+            $newImage = $article->images()->firstOrCreate(['path' => $path]);
+
+            if ($newImage->wasRecentlyCreated) {
+                dispatch(new ResizeImage($newImage->path, 300, 300));
+            }
         }
 
         session()->flash('success', __('ui.article_created'));

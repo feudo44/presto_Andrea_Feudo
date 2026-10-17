@@ -14,7 +14,7 @@
                     <div class="row justify-content-center">
                         @forelse ($article_to_check->images as $image)
                             <div class="col-6 col-md-4 mb-4 text-center">
-                                <img src="{{ asset('storage/' . $image->path) }}" class="img-fluid rounded shadow"
+                                <img src="{{ $image->getUrl(300, 300) }}" class="img-fluid rounded shadow"
                                     alt="{{ $article_to_check->title }}">
                             </div>
                         @empty

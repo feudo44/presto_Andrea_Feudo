@@ -57,3 +57,13 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## Avvio del progetto
+
+1. `composer install` e `npm install`
+2. Copiare `.env.example` in `.env`, configurare database e Mailtrap, poi `php artisan key:generate`
+3. `php artisan migrate` e `php artisan storage:link`
+4. `php artisan scout:import "App\Models\Article"` (indice di ricerca)
+5. In terminali separati: `php artisan serve`, `npm run dev` e `php artisan queue:work`
+
+Il `queue:work` serve per elaborare le immagini (ritaglio 300x300).

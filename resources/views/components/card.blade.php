@@ -1,6 +1,6 @@
 <div class="card mx-auto card-w shadow text-center mb-3">
     @if ($article->images->isNotEmpty())
-        <img src="{{ asset('storage/' . $article->images->first()->path) }}" class="card-img-top card-img-fixed"
+        <img src="{{ $article->images->first()->getUrl(300, 300) }}" class="card-img-top card-img-fixed"
             alt="{{ $article->title }}">
     @else
         <div
