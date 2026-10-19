@@ -67,3 +67,7 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 5. In terminali separati: `php artisan serve`, `npm run dev` e `php artisan queue:work`
 
 Il `queue:work` serve per elaborare le immagini (ritaglio 300x300).
+
+
+### Google Vision (User Story 7)
+Per l'analisi delle immagini serve il file `google_credential.json` nella cartella principale del progetto (fornito dai docenti, non incluso nel repository perché presente nel `.gitignore`). Il worker (`php artisan queue:work`) deve essere in esecuzione per elaborare i job.

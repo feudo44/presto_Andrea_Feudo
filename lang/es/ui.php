@@ -59,4 +59,13 @@ return [
     'image_invalid' => 'El archivo debe ser una imagen',
     'image_max' => 'Cada imagen puede pesar como máximo 1 MB',
     'no_images' => 'No hay imágenes cargadas',
+    'ratings' => 'Evaluación del contenido',
+    'labels' => 'Etiquetas',
+    'no_labels' => 'Sin etiquetas',
+    'analysis_pending' => 'Análisis en curso...',
+    'adult' => 'Adultos',
+    'violence' => 'Violencia',
+    'spoof' => 'Parodia',
+    'medical' => 'Médico',
+    'racy' => 'Sugerente',
 ];

@@ -13,9 +13,38 @@
                 <div class="col-md-8">
                     <div class="row justify-content-center">
                         @forelse ($article_to_check->images as $image)
-                            <div class="col-6 col-md-4 mb-4 text-center">
-                                <img src="{{ $image->getUrl(300, 300) }}" class="img-fluid rounded shadow"
-                                    alt="{{ $article_to_check->title }}">
+                            <div class="col-12 col-md-6 mb-4">
+                                <div class="text-center">
+                                    <img src="{{ $image->getUrl(300, 300) }}" class="img-fluid rounded shadow"
+                                        alt="{{ $article_to_check->title }}">
+                                </div>
+
+                                <div class="mt-3 small">
+                                    @if ($image->adult)
+                                        <p class="fw-bold mb-1">{{ __('ui.ratings') }}</p>
+                                        <div class="mb-3">
+                                            @foreach (['adult', 'violence', 'spoof', 'medical', 'racy'] as $field)
+                                                <div class="d-flex align-items-center mb-1">
+                                                    <i class="{{ $image->$field }} me-2"></i>
+                                                    <span>{{ __('ui.' . $field) }}</span>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    @else
+                                        <p class="fst-italic text-muted">{{ __('ui.analysis_pending') }}</p>
+                                    @endif
+
+                                    <p class="fw-bold mb-1">{{ __('ui.labels') }}</p>
+                                    @if ($image->labels)
+                                        <div class="d-flex flex-wrap gap-1">
+                                            @foreach ($image->labels as $label)
+                                                <span class="badge text-bg-secondary">{{ $label }}</span>
+                                            @endforeach
+                                        </div>
+                                    @else
+                                        <p class="fst-italic text-muted mb-0">{{ __('ui.no_labels') }}</p>
+                                    @endif
+                                </div>
                             </div>
                         @empty
                             <div class="col-12 text-center">
