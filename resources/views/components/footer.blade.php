@@ -4,12 +4,12 @@
             <div class="col-12 col-md-4 mb-2 mb-md-0">
                 @auth
                     @if (!Auth::user()->is_revisor)
-                        <a href="{{ route('become.revisor') }}" class="btn btn-outline-light">Lavora con noi</a>
+                        <a href="{{ route('become.revisor') }}" class="btn btn-outline-light">{{ __('ui.work_with_us') }}</a>
                     @endif
                 @endauth
             </div>
             <div class="col-12 col-md-4 text-center">
-                <p class="mb-0">© Presto.it - Il portale degli annunci</p>
+                <p class="mb-0">© Presto.it - {{ __('ui.footer_tagline') }}</p>
             </div>
             <div class="col-12 col-md-4"></div>
         </div>

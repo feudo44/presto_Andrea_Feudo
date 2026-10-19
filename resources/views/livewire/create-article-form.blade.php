@@ -33,7 +33,7 @@
             <select id="category" wire:model="category" class="form-select @error('category') is-invalid @enderror">
                 <option value="">{{ __('ui.select_category') }}</option>
                 @foreach ($categories as $category)
-                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    <option value="{{ $category->id }}">{{ $category->translated_name }}</option>
                 @endforeach
             </select>
             @error('category')
@@ -55,7 +55,7 @@
             <div class="row mb-3">
                 @foreach ($images as $key => $image)
                     <div class="col-6 col-md-4 text-center mb-3">
-                        <img src="{{ $image->temporaryUrl() }}" class="img-fluid rounded shadow" alt="Anteprima">
+                        <img src="{{ $image->temporaryUrl() }}" class="img-fluid rounded shadow" alt="{{ __('ui.preview') }}">
                         <button type="button" class="btn btn-sm btn-danger mt-2"
                             wire:click="removeImage({{ $key }})">{{ __('ui.remove') }}</button>
                     </div>

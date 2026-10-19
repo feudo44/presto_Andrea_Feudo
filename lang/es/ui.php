@@ -68,4 +68,6 @@ return [
     'spoof' => 'Parodia',
     'medical' => 'Médico',
     'racy' => 'Sugerente',
+    'footer_tagline' => 'El portal de anuncios',
+    'preview' => 'Vista previa',
 ];

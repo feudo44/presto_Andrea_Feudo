@@ -21,10 +21,12 @@
                         @foreach ($categories as $category)
                             <li>
                                 <a class="dropdown-item text-capitalize"
-                                    href="{{ route('byCategory', ['category' => $category]) }}">{{ $category->name }}</a>
+                                    href="{{ route('byCategory', ['category' => $category]) }}">{{ $category->translated_name }}</a>
                             </li>
                             @if (!$loop->last)
-                                <hr class="dropdown-divider">
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
                             @endif
                         @endforeach
                     </ul>
